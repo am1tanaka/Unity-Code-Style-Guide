@@ -1,58 +1,53 @@
 // STYLE SHEET EXAMPLE
 
 // GENERAL:
-// - This is an example Style Guide for use with your Unity project.
-// - Omit or add to these rules to fit your team's preferences.
-// - Use an example style guide to start:
-// - Microsoft's Framework Design Guidelines are here: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/
-// - Google also maintains a style guide here: https://google.github.io/styleguide/csharp-style.html
+// - これはUnityプロジェクトで使用するためのスタイルガイドの例です。
+// - これらのルールを省略したり追加したりして、チームの好みに合わせてください。
+// - 疑問点がある場合は、チームの意見を優先してください。
+// - このスタイルシート例を、コードスタイルガイドの出発点として利用してください。
+// - Microsoftのフレームワークデザインガイドはこちら: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/
+// - Googleのスタイルガイドはこちら: https://google.github.io/styleguide/csharp-style.html
 
-// - Customize these rules to build your own team style guide, then apply consistently. 
-// - When in doubt, your team's style guide prevails.
-
-// NAMING/CASING:
-// - Use Pascal case (e.g. ExamplePlayerController, MaxHealth, etc.) unless noted otherwise
-// - Use camel case (e.g. examplePlayerController, maxHealth, etc.) for local/private variables, parameters.
-// - Avoid snake case, kebab case, Hungarian notation
-// - If you have a Monobehaviour in a file, the source file name must match. 
+// 命名規則と大文字小文字:
+// - 通常はパスカルケースを使用します。(例: ExamplePlayerController, MaxHealth, etc.)
+// - プライベートなローカル変数やパラメーターにはキャメルケースを使用します。(例: examplePlayerController, maxHealth, etc.)
+// - スネークケース、ケバブケース、ハンガリアン記法は避けてください。
 
 // FORMATTING:
-// - Choose K&R (opening curly braces on same line) or Allman (opening curly braces on a new line) style braces.
-// - Keep lines short. Consider horizontal whitespace. Define a standard line width in your style guide (80-120 characters). 
-// - Use a single space before flow control conditions, e.g. while (x == y)
-// - Avoid spaces inside brackets, e.g. x = dataArray[index]
-// - Use a single space after a comma between function arguments.
-// - Don’t add a space after the parenthesis and function arguments, e.g. CollectItem(myObject, 0, 1);
-// - Don’t use spaces between a function name and parenthesis, e.g. DropPowerUp(myPrefab, 0, 1);
-// - Use vertical spacing (extra blank line) for visual separation. 
+// - K&R(開き中括弧を同じ行に)かAllman(開き中括弧を新しい行に)のどちらかを選択してください。ここではAllmanを採用します。
+// - 行は短くします。水平方向の空白を考慮してください。スタイルガイドで標準の行幅を定義してください。(80-120文字)
+// - 条件式の前にはスペースを一つ入れます。例: while (x == y)
+// - ブラケット([])内のスペースは避けてください。例: x = dataArray[index]
+// - 関数名と括弧の間にはスペースを入れません。例: DropPowerUp(myPrefab, 0, 1);
+// - 括弧と引数の間にはスペースを入れません。例: CollectItem(myObject, 0, 1);
+// - 引数のカンマの後にはスペースを一つ入れます。例: CollectItem(myObject, 0, 1);
+// - 見やすさのために空行を有効活用しましょう。
 
 // COMMENTS:
-// - Rather than simply answering "what" or "how," comments can fill in the gaps and tell us "why."
-// - Use the // comment to keep the explanation next to the logic.
-// - Use a Tooltip instead of a comment for serialized fields. 
-// - Avoid Regions. They encourage large class sizes. Collapsed code is more difficult to read. 
-// - Use a link to an external reference for legal information or licensing to save space.
-// - Use a summary XML tag in front of public methods or functions for output documentation/Intellisense.
+// - コメントでは"何を"や"どのように"よりも、"なぜ"が分かるように書きます。
+// - コードの説明は // コメントでコードの近く(なるべく直前)に書きます。
+// - SerializeFieldではコメントよりもTooltipを使用します。
+// - regionを使うのはやめましょう。regionは大きなクラスを作ることを助長します。コードを折りたたむと読みにくくなります。
+// - 法的な情報やライセンスに関する情報は、スペースを節約するために外部リファレンスへのリンクを使用します。
+// - <summary>タグで public メソッドや関数の情報を記載すると、Intellisenseでコメントが表示されるようになります。
 
 
 // USING LINES:
-// - Keep using lines at the top of your file.
-// - Remove unsed lines.
+// - using はファイルの先頭に記述します。
+// - 未使用の using は削除してください。
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 // NAMESPACES:
-// - Pascal case, without special symbols or underscores.
-// - Add using line at the top to avoid typing namespace repeatedly.
-// - Create sub-namespaces with the dot (.) operator, e.g. MyApplication.GameFlow, MyApplication.AI, etc.
+// - パスカルケースを使用します。特殊記号やアンダースコアは避けてください。
 namespace StyleSheetExample
 {
 
     // ENUMS:
-    // - Use a singular type name.
-    // - No prefix or suffix.
+    // - 型名は単数形にします。
+    // - プレフィックス(接頭辞)やサフィックス(接尾辞)は使用しません。
     public enum Direction
     {
         North,
@@ -62,9 +57,9 @@ namespace StyleSheetExample
     }
 
     // FLAGS ENUMS:
-    // - Use a plural type name 
-    // - No prefix or suffix.
-    // - Use column-alignment for binary values
+    // - フラグ列挙型の名前は複数形にします。
+    // - プレフィックスやサフィックスは使用しません。
+    // - バイナリ値の列揃えには列揃えを使用します。
     [Flags]
     public enum AttackModes
     {
@@ -78,16 +73,18 @@ namespace StyleSheetExample
     }
 
     // INTERFACES:
-    // - Name interfaces with adjective phrases.
-    // - Use the 'I' prefix.
+    // - 名前は形容詞にします。
+    // - パスカルケースの名前の前に`I`をつけます。
     public interface IDamageable
     {
-        string damageTypeName { get; }
-        float damageValue { get; }
+        // PROPERTIES:
+        // - プロパティ名はパスカルケースにします。
+        string DamageTypeName { get; }
+        float DamageValue { get; }
 
         // METHODS:
-        // - Start a methods name with a verbs or verb phrases to show an action.
-        // - Parameter names are camelCase.
+        // - メソッド名はパスカルケースで、最初に動作を表す動詞か動詞句にします。
+        // - パラメーター名はキャメルケースにします。
         bool ApplyDamage(string description, float damage, int numberOfHits);
     }
 
@@ -97,68 +94,66 @@ namespace StyleSheetExample
     }
 
     // CLASSES or STRUCTS:
-    // - Name them with nouns or noun phrases.
-    // - Avoid prefixes.
-    // - One Monobehaviour per file. If you have a Monobehaviour in a file, the source file name must match. 
+    // - 名前は名詞か名詞句にします。
+    // - プレフィックスはつけません。
+    // - ファイルごとに一つのMonoBehaviourを定義します。MonoBehaviourがある場合は、ファイル名を一致させます。
     public class StyleExample : MonoBehaviour
     {
 
         // FIELDS: 
-        // - Avoid special characters (backslashes, symbols, Unicode characters); these can interfere with command line tools.
-        // - Use nouns for names, but prefix booleans with a verb.
-        // - Use meaningful names. Make names searchable and pronounceable. Don’t abbreviate (unless it’s math).
-        // - Use Pascal case for public fields. Use camel case for private variables.
-        // - Add an underscore (_) in front of private fields to differentiate from local variables
-        // - You can alternatively use more explicit prefixes: m_ = member variable, s_ = static, k_ = const
-        // - Specify (or omit) the default access modifier; just be consistent with your style guide.
+        // - 特殊文字(バックスラッシュやシンボル、Unicode文字)は避けてください。コマンドラインツールと干渉する可能性があります。
+        // - 名前は名詞にしますが、ブール値は動詞で始めます。
+        // - 意味のある名前を使用します。名前を検索可能で発音可能にします。省略形は使用しません(数式の場合は除く)。
+        // - public なフィールドはパスカルケースを使用します。
+        // - private なフィールドはキャメルケースを使用し、ローカル変数と区別するためにアンダースコアから始めます。
+        // - private な static のフィールドはキャメルケースを使用し、`s_`を最初につけます。
+        // - デフォルト修飾子(privateなど)は省略するか、記載するか、どちらかで統一します。この例では省略しています。
 
-        private int _elapsedTimeInDays;
+        int _elapsedTimeInDays;
 
-        // Use [SerializeField] attribute if you want to display a private field in Inspector.
-        // Booleans ask a question that can be answered true or false.
-        [SerializeField] private bool _isPlayerDead;
+        // インスペクターに private フィールドを表示したい場合は、[SerializeField]属性を使用します。
+        // bool型は質問形式にします。
+        [SerializeField] bool _isPlayerDead;
 
-        // This groups data from the custom PlayerStats class in the Inspector.
-        [SerializeField] private PlayerStats _stats;
+        // インスペクターでカスタムクラスPlayerStatsをグループ化して表示します。
+        [SerializeField] PlayerStats _stats;
 
-        // This limits the values to a Range and creates a slider in the Inspector.
-        [Range(0f, 1f)] [SerializeField] private float _rangedStat;
+        // Range()属性は、値の範囲指定とインスペクターでのスライダー表示ができます。
+        [Range(0f, 1f), SerializeField] float _rangedStat;
 
-        // A tooltip can replace a comment on a serialized field and do double duty.
-        [Tooltip("This is another statistic for the player.")]
-        [SerializeField] private float _anotherStat;
+        // Tooltip属性は、フィールドの説明をインスペクターに表示するコメントとして使えます。
+        [Tooltip("This is another statistic for the player."), SerializeField]
+        float _anotherStat;
 
 
         // PROPERTIES:
-        // - Preferable to a public field.
-        // - Pascal case, without special characters.
-        // - Use the expression-bodied properties to shorten, but choose your preferrred format.
-        // - e.g. use expression-bodied for read-only properties but { get; set; } for everything else.
-        // - Use the Auto-Implementated Property for a public property without a backing field.
+        // - publicなプロパティは特殊文字を含まないパスカルケースを使用します。
+        // - 読み取り専用のプロパティは => か、{get; private set;}を推奨します。
+        // - 設定も必要な場合は {get; set; }を使用します。
 
-        // the private backing field
+        // privateなバッキングフィールド(記録用の private 変数)
         private int _maxHealth;
 
-        // read-only, returns backing field
+        // 読み取り専用でバッキングフィールドを返します。
         public int MaxHealthReadOnly => _maxHealth;
 
-        // equivalent to:
+        // 以下の書き方ならバッキングフィールドを省略できます。
         // public int MaxHealth { get; private set; }
 
-        // explicitly implementing getter and setter
+        // 読み取り専用のプロパティを明示的に実装します。
         public int MaxHealth
         {
             get => _maxHealth;
             set => _maxHealth = value;
         }
 
-        // write-only (not using backing field)
+        // 書き込み専用のプロパティを明示的に実装します。
         public int Health { private get; set; }
 
-        // write-only, without an explicit setter
+        // 明示的なセッターなしでバッキングフィールドに値を設定するメソッド。
         public void SetMaxHealth(int newMaxValue) => _maxHealth = newMaxValue;
 
-        // auto-implemented property without backing field
+        // バッキングフィールドを省略した自動実装プロパティ。
         public string DescriptionName { get; set; } = "Fireball";
 
 
