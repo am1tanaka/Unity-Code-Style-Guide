@@ -1,6 +1,6 @@
 // STYLE SHEET EXAMPLE
 
-// GENERAL:
+// 全般:
 // - これはUnityプロジェクトで使用するためのスタイルガイドの例です。
 // - これらのルールを省略したり追加したりして、チームの好みに合わせてください。
 // - 疑問点がある場合は、チームの意見を優先してください。
@@ -13,7 +13,7 @@
 // - プライベートなローカル変数やパラメーターにはキャメルケースを使用します。(例: examplePlayerController, maxHealth, etc.)
 // - スネークケース、ケバブケース、ハンガリアン記法は避けてください。
 
-// FORMATTING:
+// 書式:
 // - K&R(開き中括弧を同じ行に)かAllman(開き中括弧を新しい行に)のどちらかを選択してください。ここではAllmanを採用します。
 // - 行は短くします。水平方向の空白を考慮してください。スタイルガイドで標準の行幅を定義してください。(80-120文字)
 // - 条件式の前にはスペースを一つ入れます。例: while (x == y)
@@ -23,7 +23,7 @@
 // - 引数のカンマの後にはスペースを一つ入れます。例: CollectItem(myObject, 0, 1);
 // - 見やすさのために空行を有効活用しましょう。
 
-// COMMENTS:
+// コメント:
 // - コメントでは"何を"や"どのように"よりも、"なぜ"が分かるように書きます。
 // - コードの説明は // コメントでコードの近く(なるべく直前)に書きます。
 // - SerializeFieldではコメントよりもTooltipを使用します。
@@ -32,7 +32,7 @@
 // - <summary>タグで public メソッドや関数の情報を記載すると、Intellisenseでコメントが表示されるようになります。
 
 
-// USING LINES:
+// using:
 // - using はファイルの先頭に記述します。
 // - 未使用の using は削除してください。
 using System.Collections;
@@ -40,13 +40,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-// NAMESPACES:
+// ネームスペース:
 // - パスカルケースを使用します。特殊記号やアンダースコアは避けてください。
 namespace StyleSheetExample
 {
 
-    // ENUMS:
-    // - 型名は単数形にします。
+    // 列挙型:
+    // - 列挙型名は単数形にします。
     // - プレフィックス(接頭辞)やサフィックス(接尾辞)は使用しません。
     public enum Direction
     {
@@ -56,7 +56,7 @@ namespace StyleSheetExample
         West,
     }
 
-    // FLAGS ENUMS:
+    // フラグ列挙型:
     // - フラグ列挙型の名前は複数形にします。
     // - プレフィックスやサフィックスは使用しません。
     // - バイナリ値の列揃えには列揃えを使用します。
@@ -72,17 +72,17 @@ namespace StyleSheetExample
         MeleeAndSpecial = Melee | Special  // 000101
     }
 
-    // INTERFACES:
+    // インターフェース:
     // - 名前は形容詞にします。
     // - パスカルケースの名前の前に`I`をつけます。
     public interface IDamageable
     {
-        // PROPERTIES:
+        // プロパティ:
         // - プロパティ名はパスカルケースにします。
         string DamageTypeName { get; }
         float DamageValue { get; }
 
-        // METHODS:
+        // メソッド:
         // - メソッド名はパスカルケースで、最初に動作を表す動詞か動詞句にします。
         // - パラメーター名はキャメルケースにします。
         bool ApplyDamage(string description, float damage, int numberOfHits);
@@ -93,14 +93,14 @@ namespace StyleSheetExample
         void Damage(T damageTaken);
     }
 
-    // CLASSES or STRUCTS:
+    // クラスと構造体:
     // - 名前は名詞か名詞句にします。
     // - プレフィックスはつけません。
     // - ファイルごとに一つのMonoBehaviourを定義します。MonoBehaviourがある場合は、ファイル名を一致させます。
     public class StyleExample : MonoBehaviour
     {
 
-        // FIELDS: 
+        // フィールド: 
         // - 特殊文字(バックスラッシュやシンボル、Unicode文字)は避けてください。コマンドラインツールと干渉する可能性があります。
         // - 名前は名詞にしますが、ブール値は動詞で始めます。
         // - 意味のある名前を使用します。名前を検索可能で発音可能にします。省略形は使用しません(数式の場合は除く)。
@@ -126,7 +126,7 @@ namespace StyleSheetExample
         float _anotherStat;
 
 
-        // PROPERTIES:
+        // プロパティ:
         // - publicなプロパティは特殊文字を含まないパスカルケースを使用します。
         // - 読み取り専用のプロパティは => か、{get; private set;}を推奨します。
         // - 設定も必要な場合は {get; set; }を使用します。
@@ -157,25 +157,25 @@ namespace StyleSheetExample
         public string DescriptionName { get; set; } = "Fireball";
 
 
-        // EVENTS:
-        // - Name with a verb phrase.
-        // - Present participle means "before" and past participle mean "after."
-        // - Use System.Action delegate for most events (can take 0 to 16 parameters).
-        // - Define a custom EventArg only if necessary (either System.EventArgs or a custom struct).
-        // - OR alternatively, use the System.EventHandler; choose one and apply consistently.
-        // - Choose a naming scheme for events, event handling methods (subscriber/observer), and event raising methods (publisher/subject)
-        // - e.g. event/action = "OpeningDoor", event raising method = "OnDoorOpened", event handling method = "MySubject_DoorOpened"
-   
-        // event before
+        // イベント:
+        // - イベント名は動詞句にします。
+        // - 処理前イベントは進行形、処理後イベントは過去形にします。
+        // - デリゲートはSystem.ActionやSystem.Funcを使用します(0から16個のパラメーターを取ることができます)。
+        // - 必要な場合は独自のEventArgを定義します(System.EventArgsを継承するか、カスタムの構造体)。
+        // - または、System.EventHandlerを使用します。どちらかを選択し、一貫して適用します。
+        // - イベント名、イベントハンドラー( subscriber(購読者) / observer(観測者) )、イベント発生メソッド( publisher(パブリッシャー) / subject(サブジェクト) )の命名規則を選択します。
+        // - 例: イベント/アクション = "OpeningDoor", イベント発生メソッド = "OnDoorOpened", イベントハンドラー = "MySubject_DoorOpened"
+
+        // 処理前イベント
         public event Action OpeningDoor;
 
-        // event after
+        // 処理後イベント
         public event Action DoorOpened;     
 
         public event Action<int> PointsScored;
         public event Action<CustomEventArgs> ThingHappened;
 
-        // These are event raising methods, e.g. OnDoorOpened, OnPointsScored, etc.
+        // これらはイベントを発生させるメソッド(event raising methods)です。例: OnDoorOpened, OnPointsScored, etc.
         public void OnDoorOpened()
         {
             DoorOpened?.Invoke();
@@ -186,7 +186,7 @@ namespace StyleSheetExample
             PointsScored?.Invoke(points);
         }
 
-        // This is a custom EventArg made from a struct.
+        // これは構造体で作成したカスタムEventArgです。
         public struct CustomEventArgs
         {
             public int ObjectID { get; }
@@ -200,17 +200,17 @@ namespace StyleSheetExample
         }
 
 
-        // METHODS:
-        // - Start a methods name with a verbs or verb phrases to show an action.
-        // - Parameter names are camel case.
+        // メソッド:
+        // - メソッド名は動作を示す動詞か動詞句で始めます。
+        // - パラメータ名はキャメルケースです。
 
-        // Methods start with a verb.
+        // メソッドは動詞で始めます。
         public void SetInitialPosition(float x, float y, float z)
         {
             transform.position = new Vector3(x, y, z);
         }
 
-        // Methods ask a question when they return bool.
+        // boolを返すメソッドは質問形式にします。
         public bool IsNewPosition(Vector3 newPosition)
         {
             return (transform.position == newPosition);
@@ -219,15 +219,15 @@ namespace StyleSheetExample
         private void FormatExamples(int someExpression)
         {
             // VAR:
-            // - Use var if it helps readability, especially with long type names.
-            // - Avoid var if it makes the type ambiguous.
+            // - varは読みやすさや間違ったクラスへの代入を防ぐ効果があります。
+            // - 戻り値の型が不明瞭な場合は var を使わないでください。
             var powerUps = new List<PlayerStats>();
             var dict = new Dictionary<string, List<GameObject>>();
 
 
-            // SWITCH STATEMENTS:
-            // - The formatting can vary. Select one for your style guide and follow it.
-            // - This example  indents each case and the break underneath.
+            // SWITCH文:
+            // - 様々な書式があります。チームに合ったスタイルガイドを作成して、それに従ってください。
+            // - この例では、各caseとその下のbreakをインデントしています。
             switch (someExpression)
             {
                 case 0:
@@ -241,21 +241,21 @@ namespace StyleSheetExample
                     break;
             }
 
-            // BRACES: 
-            // - Keep braces for clarity when using single-line statements.
-            // - Or avoid single-line statement entirely for debuggability.
-            // - Keep braces in nested multi-line statements.
+            // 括弧:
+            // - 一行の時でも括弧は残します。
+            // - 或いは、デバッグしやすいように複数行にします。
+            // - ネストされた複数行の文も括弧を残します。
 
-            // This single-line statement keeps the braces...
+            // 一行でも括弧を残します。
             for (int i = 0; i < 100; i++) { DoSomething(i); }
 
-            // ... but this is more debuggable. You can set a breakpoint on the clause.
+            // 一行でも行分割すれば、ブレークポインタを設定できてデバッグしやすくなります。
             for (int i = 0; i < 100; i++)
             {
                 DoSomething(i);
             }
 
-            // Don't remove the braces here.
+            // ネストされた複数行の文も括弧を残します。
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -271,9 +271,9 @@ namespace StyleSheetExample
         }
     }
 
-    // OTHER CLASSES:
-    // - Define as many other helper/non-Monobehaviour classes in your file as needed.
-    // - This is a serializable class that groups fields in the Inspector.
+    // その他のクラス:
+    // - その他のヘルパー/非MonoBehaviourクラスを必要に応じてファイルに定義します。
+    // - 以下はインスペクターにフィールドグループを表示するためのSerializableクラスの例です。
     [Serializable]
     public struct PlayerStats
     {
