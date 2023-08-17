@@ -132,7 +132,7 @@ namespace StyleSheetExample
         // - 設定も必要な場合は {get; set; }を使用します。
 
         // privateなバッキングフィールド(記録用の private 変数)
-        private int _maxHealth;
+        int _maxHealth;
 
         // 読み取り専用でバッキングフィールドを返します。
         public int MaxHealthReadOnly => _maxHealth;
@@ -216,7 +216,7 @@ namespace StyleSheetExample
             return (transform.position == newPosition);
         }
 
-        private void FormatExamples(int someExpression)
+        void FormatExamples(int someExpression)
         {
             // VAR:
             // - varは読みやすさや間違ったクラスへの代入を防ぐ効果があります。
@@ -265,7 +265,7 @@ namespace StyleSheetExample
             }
         }
 
-        private void DoSomething(int x)
+        void DoSomething(int x)
         {
             // .. 
         }
