@@ -1,17 +1,21 @@
-// STYLE SHEET EXAMPLE
+// AmuseOne版 STYLE SHEET EXAMPLE
+// 2023/8/17 初版
+// 2023/8/19 修正版 プライベート変数の`_`の規約を削除
 
 // 全般:
 // - これはUnityプロジェクトで使用するためのスタイルガイドの例です。
-// - これらのルールを省略したり追加したりして、チームの好みに合わせてください。
-// - 疑問点がある場合は、チームの意見を優先してください。
-// - このスタイルシート例を、コードスタイルガイドの出発点として利用してください。
+// - これらのルールを省略したり追加したりしてチームの好みに合わせてください。
+// - 疑問点がある場合はチームの意見を優先してください。
+// - このスタイルシート例をコードスタイルガイドの出発点として利用してください。
 // - Microsoftのフレームワークデザインガイドはこちら: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/
 // - Googleのスタイルガイドはこちら: https://google.github.io/styleguide/csharp-style.html
 
 // 命名規則と大文字小文字:
 // - 通常はパスカルケースを使用します。(例: ExamplePlayerController, MaxHealth, etc.)
-// - プライベートなローカル変数やパラメーターにはキャメルケースを使用します。(例: examplePlayerController, maxHealth, etc.)
+// - 変数やパラメーターにはキャメルケースを使用します。(例: examplePlayerController, maxHealth, etc.)
 // - スネークケース、ケバブケース、ハンガリアン記法は避けてください。
+// - 日常的に利用しやすいように private や this などのデフォルトのキーワードは省略します。
+// - ローカル変数はメンバ変数と同じ名前にしないでください。
 
 // 書式:
 // - K&R(開き中括弧を同じ行に)かAllman(開き中括弧を新しい行に)のどちらかを選択してください。ここではAllmanを採用します。
@@ -104,27 +108,26 @@ namespace StyleSheetExample
         // - 特殊文字(バックスラッシュやシンボル、Unicode文字)は避けてください。コマンドラインツールと干渉する可能性があります。
         // - 名前は名詞にしますが、ブール値は動詞で始めます。
         // - 意味のある名前を使用します。名前を検索可能で発音可能にします。省略形は使用しません(数式の場合は除く)。
-        // - public なフィールドはパスカルケースを使用します。
-        // - 変数は直接公開せずにプロパティを使用します。
-        // - private なフィールドはキャメルケースを使用し、ローカル変数と区別するためにアンダースコアから始めます。
-        // - private な static のフィールドはキャメルケースを使用し、`s_`を最初につけます。
+        // - プロパティや定数はパスカルケースを使用します。
+        // - 変数はキャメルケースを使用します。
+        // - 原則として、変数は直接公開せずにプロパティを使用します。
         // - デフォルト修飾子(privateなど)は省略するか、記載するか、どちらかで統一します。この例では省略しています。
 
-        int _elapsedTimeInDays;
+        int elapsedTimeInDays;
 
         // インスペクターに private フィールドを表示したい場合は、[SerializeField]属性を使用します。
         // bool型は質問形式にします。
-        [SerializeField] bool _isPlayerDead;
+        [SerializeField] bool isPlayerDead;
 
         // インスペクターでカスタムクラスPlayerStatsをグループ化して表示します。
-        [SerializeField] PlayerStats _stats;
+        [SerializeField] PlayerStats stats;
 
         // Range()属性は、値の範囲指定とインスペクターでのスライダー表示ができます。
-        [Range(0f, 1f), SerializeField] float _rangedStat;
+        [Range(0f, 1f), SerializeField] float rangedStat;
 
         // Tooltip属性は、フィールドの説明をインスペクターに表示するコメントとして使えます。
         [Tooltip("This is another statistic for the player."), SerializeField]
-        float _anotherStat;
+        float anotherStat;
 
 
         // プロパティ:
@@ -133,10 +136,10 @@ namespace StyleSheetExample
         // - 設定も必要な場合は {get; set; }を使用します。
 
         // privateなバッキングフィールド(記録用の private 変数)
-        int _maxHealth;
+        int maxHealth;
 
         // 読み取り専用でバッキングフィールドを返します。
-        public int MaxHealthReadOnly => _maxHealth;
+        public int MaxHealthReadOnly => maxHealth;
 
         // 以下の書き方ならバッキングフィールドを省略できます。
         // public int MaxHealth { get; private set; }
@@ -144,15 +147,15 @@ namespace StyleSheetExample
         // 読み取り専用のプロパティを明示的に実装します。
         public int MaxHealth
         {
-            get => _maxHealth;
-            set => _maxHealth = value;
+            get => maxHealth;
+            set => maxHealth = value;
         }
 
         // 書き込み専用のプロパティを明示的に実装します。
         public int Health { private get; set; }
 
         // 明示的なセッターなしでバッキングフィールドに値を設定するメソッド。
-        public void SetMaxHealth(int newMaxValue) => _maxHealth = newMaxValue;
+        public void SetMaxHealth(int newMaxValue) => maxHealth = newMaxValue;
 
         // バッキングフィールドを省略した自動実装プロパティ。
         public string DescriptionName { get; set; } = "Fireball";
@@ -168,13 +171,13 @@ namespace StyleSheetExample
         // - 例: イベント/アクション = "OpeningDoor", イベント発生メソッド = "OnDoorOpened", イベントハンドラー = "MySubject_DoorOpened"
 
         // 処理前イベント
-        public event Action OpeningDoor;
+        public event Action OpeningDoor { get; set; }
 
         // 処理後イベント
-        public event Action DoorOpened;     
+        public event Action DoorOpened { get; set; }     
 
-        public event Action<int> PointsScored;
-        public event Action<CustomEventArgs> ThingHappened;
+        public event Action<int> PointsScored { get; set; }
+        public event Action<CustomEventArgs> ThingHappened { get; set; }
 
         // これらはイベントを発生させるメソッド(event raising methods)です。例: OnDoorOpened, OnPointsScored, etc.
         public void OnDoorOpened()
@@ -228,7 +231,7 @@ namespace StyleSheetExample
 
             // SWITCH文:
             // - 様々な書式があります。チームに合ったスタイルガイドを作成して、それに従ってください。
-            // - この例では、各caseとその下のbreakをインデントしています。
+            // - この例では、各 case とその下の break をインデントしています。
             switch (someExpression)
             {
                 case 0:
